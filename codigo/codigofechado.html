@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Código Exemplo</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            font-family: Consolas, monospace;
+            padding: 20px;
+        }
+
+        pre {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<pre>
+// Classe base ABERTA para extensão
+public abstract class UnidadeSaude implements IUnidadeAtendimento {
+    private String nome;
+    private String endereco;
+    private String telefone;
+    private boolean aberta;
+
+    // Construtor e getters/setters básicos
+    public UnidadeSaude(String nome) {
+        setNome(nome);
+        this.aberta = true;
+    }
+
+    public abstract void realizarAtendimento(); // FECHADO para modificação
+}
+
+// PODE ESTENDER SEM MODIFICAR UnidadeSaude
+public class HospitalPublico extends UnidadeSaude {
+    private int leitosDisponiveis;
+
+    public HospitalPublico(String nome) {
+        super(nome); // Reusa código da classe base
+    }
+
+    @Override
+    public void realizarAtendimento() {
+        if (!estaAberta()) {
+            throw new IllegalStateException("Hospital está fechado");
+        }
+        System.out.println("Atendimento em Hospital Público: " + getNome());
+        // Comportamento ESPECÍFICO para Hospital
+    }
+}
+
+// NOVA UNIDADE SEM MODIFICAR CÓDIGO EXISTENTE
+public class PostoVolante extends UnidadeSaude {
+    private String localizacaoAtual; // Nova propriedade específica
+
+    public PostoVolante(String nome) {
+        super(nome);
+    }
+
+    @Override
+    public void realizarAtendimento() {
+        if (!estaAberta()) {
+            throw new IllegalStateException("Posto Volante está fechado");
+        }
+        System.out.println("Atendimento móvel em Posto Volante: " + getNome() 
+            + " - Local: " + localizacaoAtual);
+        // Comportamento ÚNICO para Posto Móvel
+    }
+
+    // Método específico para PostoVolante
+    public void mudarLocalizacao(String novaLocalizacao) {
+        this.localizacaoAtual = novaLocalizacao;
+    }
+}
+
+</pre>
+
+</body>
+</html>

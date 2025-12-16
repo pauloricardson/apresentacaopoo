@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<div class="slide">
+
+    <!-- CONTEÚDO -->
+    <section class="left">
+        <h1>Princípio Aberto/Fechado - OCP</h1>
+        <p>
+            O princípio Aberto-Fechado é demonstrado na hierarquia de UnidadeSaude, onde a classe base está FECHADA para modificação (não alteramos seu código quando criamos novos tipos de unidades), mas ABERTA para extensão (podemos criar HospitalPublico, Ubs, PostoVolante e futuras unidades como DriveThruVacina ou UnidadeRural sem modificar o sistema existente). Cada nova unidade adiciona comportamentos específicos através da sobrescrita do método realizarAtendimento(), mantendo a compatibilidade com todo código que depende da abstração UnidadeSaude.
+        </p>
+       
+    </section>
+
+    <!-- ÁREA DE CÓDIGO -->
+    <section class="right">
+        <iframe src="codigo/codigofechado.html"></iframe>
+    </section>
+
+</div>
+
+<!-- BARRA DE NAVEGAÇÃO -->
+<footer class="nav">
+    <a href="principio1.html">
+        <button>⬅ Anterior</button>
+    </a>
+
+    <a href="principio3.html">
+        <button>Próximo ➡</button>
+    </a>
+</footer>
+
+</body>
+</html>

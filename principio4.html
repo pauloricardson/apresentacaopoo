@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<div class="slide">
+
+    <!-- CONTEÚDO -->
+    <section class="left">
+        <h1>Princípio de Segregação de Interfaces - ISP</h1>
+        <p>O Princípio de Segregação de Interfaces é aplicado através de interfaces específicas como INotificacaoEstoque, INotificacaoAgendamento, IRelatorioAplicacoes, ao invés de uma única interface "gordura". Isso permite que classes como GerenciadorEstoque dependam apenas do que realmente precisam (INotificacaoEstoque), sem serem forçadas a conhecer métodos irrelevantes como notificarAgendamentoConfirmado(). As implementações como NotificacaoVacina podem escolher quais interfaces implementar, e futuras classes especializadas como NotificacaoAvancada podem focar em funcionalidades específicas sem obrigações desnecessárias, reduzindo o acoplamento e facilitando a manutenção.</p>
+       
+    </section>
+
+    <!-- ÁREA DE CÓDIGO -->
+    <section class="right">
+        <iframe src="codigo/codigointerface.html"></iframe>
+    </section>
+
+</div>
+
+<!-- BARRA DE NAVEGAÇÃO -->
+<footer class="nav">
+    <a href="principio3.html">
+        <button>⬅ Anterior</button>
+    </a>
+
+    <a href="principio5.html">
+        <button>Próximo ➡</button>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Código Exemplo</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            font-family: Consolas, monospace;
+            padding: 20px;
+        }
+
+        pre {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<pre>
+// Interface comum que define o contrato
+public interface IAplicadorVacina {
+    void aplicarVacina(AplicacaoVacina app);
+    boolean podeAplicarVacina();
+}
+
+// Classe base abstrata implementando o contrato
+public abstract class ProfissionalSaude implements IAplicadorVacina {
+    private String nome;
+    private String registro;
+    private String especialidade;
+
+    public ProfissionalSaude(String nome, String registro) {
+        setNome(nome);
+        setRegistro(registro);
+    }
+
+    @Override
+    public boolean podeAplicarVacina() {
+        return true;
+    }
+
+    @Override
+    public abstract void aplicarVacina(AplicacaoVacina app);
+}
+
+public class Medico extends ProfissionalSaude {
+    public Medico(String nome, String registro) {
+        super(nome, registro);
+        setEspecialidade("Clínico Geral");
+    }
+
+    @Override
+    public void aplicarVacina(AplicacaoVacina app) {
+        if (!podeAplicarVacina()) {
+            throw new IllegalStateException("Médico não pode aplicar vacina no momento");
+        }
+       
+        System.out.println("Médico " + getNome() + " supervisionou aplicação.");
+    
+    }
+}
+
+// SUBSTITUIÇÃO VÁLIDA: Enfermeiro mantém o contrato
+public class Enfermeiro extends ProfissionalSaude {
+    public Enfermeiro(String nome, String registro) {
+        super(nome, registro);
+        setEspecialidade("Enfermagem");
+    }
+
+    @Override
+    public void aplicarVacina(AplicacaoVacina app) {
+
+        System.out.println("Enfermeiro " + getNome() + " aplicou vacina.");
+  
+    }
+}
+
+// SUBSTITUIÇÃO VÁLIDA com condição adicional
+public class TecnicoEnfermagem extends ProfissionalSaude {
+    private boolean certificadoVacinacaoAtualizado;
+
+    public TecnicoEnfermagem(String nome, String registro, boolean certificadoVacinacaoAtualizado) {
+        super(nome, registro);
+        setEspecialidade("Enfermagem");
+        this.certificadoVacinacaoAtualizado = certificadoVacinacaoAtualizado;
+    }
+
+    @Override
+    public boolean podeAplicarVacina() {
+        // Adiciona condição específica SEM violar o contrato
+        return certificadoVacinacaoAtualizado && super.podeAplicarVacina();
+    }
+
+    @Override
+    public void aplicarVacina(AplicacaoVacina app) {
+        if (!podeAplicarVacina()) {
+            // Lança mesma exceção que a classe base lançaria
+            throw new IllegalStateException("Técnico não pode aplicar vacina - certificado vencido");
+        }
+        System.out.println("Técnico " + getNome() + " aplicou vacina.");
+    }
+}
+
+// EXEMPLO NA MAIN
+
+        IAplicadorVacina medico = new Medico("Dr. Silva", "CRM123");
+        IAplicadorVacina enfermeiro = new Enfermeiro("Ana Souza", "COREN456");
+        
+        medico.aplicar(aplicacao);
+    }
+}
+
+</pre>
+
+</body>
+</html>

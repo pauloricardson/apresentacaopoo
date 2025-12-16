@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Código Exemplo</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            font-family: Consolas, monospace;
+            padding: 20px;
+        }
+
+        pre {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<pre>
+
+public interface IRelatorioAplicacoes {
+    public String gerarRelatorioTotalAplicadas();
+
+}
+
+public interface INotificacaoEstoque {
+    public void notificarVacinaProximaValidade(LoteVacina lote);
+    public void notificarEstoqueBaixo(Vacina vacina);
+}
+
+public class GerenciadorVacinas {
+    private List<Vacina> vacinas;
+    private IRelatorioAplicacoes relatorioAplicacoes;
+    private INotificacaoEstoque notificacaoEstoque;
+    private List<AplicacaoVacina> aplicacoes;
+
+    public GerenciadorVacinas(IRelatorioAplicacoes relatorioAplicacoes, INotificacaoEstoque notificacaoEstoque) {
+        this.vacinas = new ArrayList<>();
+        this.aplicacoes = new ArrayList<>();
+        this.relatorioAplicacoes = relatorioAplicacoes;
+        this.notificacaoEstoque = notificacaoEstoque;
+    }
+
+     //....  Mais códigos
+
+
+// EXEMPLO DE USO 
+
+IRelatorioAplicacoes relatorio1 = new RelatorioVacinas(todasAplicacoes);
+INotificacaoEstoque not2 = new NotificacaoVacina();
+
+GerenciadorVacinas gerenciador = new GerenciadorVacinas(relatorio1, not2);
+gerenciador.gerarRelatorioAplicacoes();
+gerenciador.getNotificacaoEstoque().notificarEstoqueBaixo(gripe);
+gerenciador.getNotificacaoEstoque().notificarVacinaProximaValidade(loteGripe);
+
+</pre>
+
+</body>
+</html>

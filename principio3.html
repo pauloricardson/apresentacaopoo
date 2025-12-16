@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<div class="slide">
+
+    <!-- CONTEÚDO -->
+    <section class="left">
+        <h1>Princípio ds Subistituição de Liskov - LSP</h1>
+        <p>O Princípio de Liskov é respeitado na hierarquia ProfissionalSaude, onde Medico, Enfermeiro e TecnicoEnfermagem são perfeitamente substituíveis por sua classe base ProfissionalSaude ou interface IAplicadorVacina. Cada subtipo mantém o contrato estabelecido: não fortalece pré-condições (exigências antes da execução), não enfraquece pós-condições (garantias após a execução), preserva invariantes (propriedades sempre verdadeiras) e lança apenas exceções compatíveis. Isso permite que o ServicoVacinacao trate todos os profissionais de forma uniforme, garantindo que novas especializações futuras (como EnfermeiroChefe ou Residente) possam ser adicionadas sem quebrar o código existente.</p>
+       
+    </section>
+
+    <!-- ÁREA DE CÓDIGO -->
+    <section class="right">
+        <iframe src="codigo/codigoliskov.html"></iframe>
+    </section>
+
+</div>
+
+<!-- BARRA DE NAVEGAÇÃO -->
+<footer class="nav">
+    <a href="principio2.html">
+        <button>⬅ Anterior</button>
+    </a>
+
+    <a href="principio4.html">
+        <button>Próximo ➡</button>
+    </a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+<div class="slide">
+
+    <!-- CONTEÚDO -->
+    <section class="left">
+        <h1>Princípio de Inversão de Dependência - DIP</h1>
+        <p>O Princípio de Inversão de Dependência (DIP) é aplicado no GerenciadorVacinas que depende das abstrações IRelatorioAplicacoes e INotificacaoEstoque, ao invés de implementações concretas. As dependências são injetadas via construtor, permitindo que o mesmo código funcione com diferentes implementações (RelatorioBasico, NotificacaoSimples, RelatorioDetalhado, NotificacaoComSMS) sem modificações, facilitando testes, manutenção e evolução do sistema.</p>
+       
+    </section>
+
+    <!-- ÁREA DE CÓDIGO -->
+    <section class="right">
+        <iframe src="codigo/codigodip.html"></iframe>
+    </section>
+
+</div>
+
+<!-- BARRA DE NAVEGAÇÃO -->
+<footer class="nav">
+    <a href="principio4.html">
+        <button>⬅ Anterior</button>
+    </a>
+
+    <a href="index.html">
+        <button>Próximo ➡</button>
+    </a>
+</footer>
+
+</body>
+</html>

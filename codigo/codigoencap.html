@@ -20,9 +20,6 @@
 <body>
 
 <pre>
-package br.gov.sus.scvs.dominio.cidadao;
-
-import br.gov.sus.scvs.servicos.AplicacaoVacina;
 
 public class Cidadao implements IHistoricoVacinal {
     private String nome;
@@ -31,28 +28,39 @@ public class Cidadao implements IHistoricoVacinal {
     private String endereco;
     private HistoricoVacinal historicoVacinal;
 
-    public Cidadao(String nome, String cpf) {
-        setNome(nome);
-        setCpf(cpf);
-        this.historicoVacinal = new HistoricoVacinal();
+    public Cidadao() {
     }
 
     public Cidadao(String nome, String cpf, String dataNascimento, String endereco) {
-        this(nome, cpf);
+        this.nome = nome;
+        this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.endereco = endereco;
+        this.historicoVacinal = new HistoricoVacinal();
     }
 
-    // Getters
-    public String getNome() { return nome; }
-    public String getCpf() { return cpf; }
-    public String getDataNascimento() { return dataNascimento; }
-    public String getEndereco() { return endereco; }
-    public HistoricoVacinal getHistoricoVacinal() { return historicoVacinal; }
+    public String getNome() {
+        return this.nome;
+    }
 
-    // Setters com validação
+    public String getCpf() {
+        return this.cpf;
+    }
+
+    public String getDataNascimento() {
+        return this.dataNascimento;
+    }
+
+    public String getEndereco() {
+        return this.endereco;
+    }
+
+    public HistoricoVacinal getHistoricoVacinal() {
+        return this.historicoVacinal;
+    }
+
     public void setNome(String nome) {
-        if (nome == null || nome.trim().isEmpty())
+        if (nome == null || nome.isEmpty())
             throw new IllegalArgumentException("Nome não pode ser vazio");
         this.nome = nome;
     }
@@ -63,17 +71,36 @@ public class Cidadao implements IHistoricoVacinal {
         this.cpf = cpf;
     }
 
-    // Implementação da interface IHistoricoVacinal
-    @Override
-    public void adicionarAplicacao(AplicacaoVacina app) {
-        historicoVacinal.adicionarAplicacao(app);
+    public void setDataNascimento(String dataNascimento) {
+        if (dataNascimento == null || dataNascimento.isEmpty()) {
+            throw new IllegalArgumentException("Data de nascimento não pode ser vazia");
+        }
+        this.dataNascimento = dataNascimento;
+    }
+
+    public void setEndereco(String endereco) {
+        if (endereco == null || endereco.isEmpty())
+            throw new IllegalArgumentException("Endereço não pode ser vazio");
+        this.endereco = endereco;
     }
 
     @Override
-    public int getTotalAplicacoes() {
+    public void adicionarAplicacao(AplicacaoVacina aplicacao) {
+
+        historicoVacinal.adicionarAplicacao(aplicacao);
+    }
+
+    @Override
+    public int obterTotalAplicacoes() {
+
         return historicoVacinal.getTotalAplicacoes();
     }
 }
+
+
+
+
+
 </pre>
 
 </body>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Código Exemplo</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            font-family: Consolas, monospace;
+            padding: 20px;
+        }
+
+        pre {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<pre>
+// Interfaces segregadas por responsabilidade
+
+public interface INotificacaoEstoque {
+    void notificarVacinaProximaValidade(LoteVacina lote);
+    void notificarEstoqueBaixo(Vacina vacina);
+}
+
+public interface INotificacaoAgendamento {
+    void notificarAgendamentoConfirmado(Agendamento agendamento);
+    void notificarLembreteAgendamento(Agendamento agendamento);
+}
+
+public interface INotificacaoMassa {
+    void notificarAgendamentosEmMassa(List<Agendamento> agendamentos);
+    void notificarCampanhaIniciada(CampanhaVacinacao campanha);
+}
+
+public interface IRelatorioAplicacoes {
+    String gerarRelatorioTotalAplicadas();
+    String gerarRelatorioEficaciaVacinal();
+}
+
+public interface IRelatorioCobertura {
+    String gerarRelatorioCidadãosNaoVacinados();
+    String gerarRelatorioCoberturaPorRegiao();
+}
+
+public interface IRelatorioEstoque {
+    String gerarRelatorioConsumoPorUnidade();
+    String gerarRelatorioLotesVencidos();
+}
+</pre>
+
+</body>
+</html>

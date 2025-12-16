@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Código Exemplo</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #dcdcdc;
+            font-family: Consolas, monospace;
+            padding: 20px;
+        }
+
+        pre {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<pre>
+
+public abstract class ProfissionalSaude implements IAplicadorVacina {
+    private String nome;
+    private String registro;
+    private String especialidade;
+
+    public ProfissionalSaude(String nome, String registro) {
+        setNome(nome);
+        setRegistro(registro);
+    }
+
+    public String getNome() {
+        return this.nome;
+    }
+    public String getRegistro() {
+        return this.registro;
+    }
+
+    public void setNome(String nome) {
+        if (nome == null || nome.isEmpty())
+            throw new IllegalArgumentException("Nome não pode ser vazio");
+        this.nome = nome;
+    }
+
+    public void setRegistro(String registro) {
+        if (registro == null || registro.isEmpty())
+            throw new IllegalArgumentException("Registro não pode ser vazio");
+        this.registro = registro;
+    }
+
+    public void setEspecialidade(String especialidade) {
+        if(especialidade == null || especialidade.isEmpty())
+            throw new IllegalArgumentException("Especialidade não pode ser vazio");
+        this.especialidade = especialidade;
+    }
+
+    @Override
+    public boolean podeAplicarVacina() {
+        return true;
+    }
+}
+
+
+----------------------------------------------------------------------------------------------------------------------------
+
+public class TecnicoEnfermagem extends ProfissionalSaude {
+
+    public TecnicoEnfermagem(String nome, String registro, boolean certificadoVacinacaoAtualizado) {
+        super(nome, registro);
+        setEspecialidade("Enfermagem");
+    }
+
+    @Override
+    public boolean podeAplicarVacina() {
+        return true;
+    }
+
+    @Override
+    public void aplicarVacina(AplicacaoVacina app) {
+        if (!podeAplicarVacina()) {
+            throw new IllegalStateException("Técnico não pode aplicar vacina - certificado vencido");
+        }
+        System.out.println("Técnico " + getNome() + " aplicou vacina.");
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------
+
+public class Enfermeiro extends ProfissionalSaude {
+    public Enfermeiro(String nome, String registro) {
+        super(nome, registro);
+        setEspecialidade("Enfermagem");
+    }
+
+    @Override
+    public void aplicarVacina(AplicacaoVacina app) {
+        System.out.println("Enfermeiro " + getNome() + " aplicou vacina.");
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------------------
+
+public class Medico extends ProfissionalSaude {
+    public Medico(String nome, String registro) {
+        super(nome, registro);
+        setEspecialidade("Clínico Geral");
+    }
+
+    @Override
+    public void aplicarVacina(AplicacaoVacina app) {
+        if (!podeAplicarVacina()) {
+            throw new IllegalStateException("Médico não pode aplicar vacina no momento");
+        }
+        System.out.println("Médico " + getNome() + " supervisionou aplicação.");
+    }
+}
+
+
+
+</pre>
+
+</body>
+</html>
